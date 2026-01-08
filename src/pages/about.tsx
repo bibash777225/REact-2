@@ -80,15 +80,20 @@ import {
   DropdownMenuTrigger,
 } from "@/Components/ui/dropdown-menu";
 import { Spinner } from "@/Components/ui/spinner";
-import { useGetAllTodoApi, useTodoGetById } from "../services/todo";
+import { useDeleteTodoById, useGetAllTodoApi, useTodoGetById } from "../services/todo";
 import { TodoApi } from "../services/todo";
 // interface TodoItemProps {
 //   todo: <ApiData>;
 // }
 
 export default function About() {
+  // single id ko
   const { data: id } = useTodoGetById(5);
+
+  //sabai 
   const { data, isLoading } = useGetAllTodoApi();
+// delte ko 
+const{mutate:deleteTodo}=useDeleteTodoById();
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
@@ -147,17 +152,24 @@ export default function About() {
                   {item.status}
                 </td>
                 <td className="py-3 px-6 border-b border-gray-300">
-                  <DropdownMenu modal={false}>
+                  <DropdownMenu >
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost">...</Button>
                     </DropdownMenuTrigger>
 
                     <DropdownMenuContent>
-                      <DropdownMenuItem>Edit</DropdownMenuItem>
+                      <DropdownMenuItem
+                      
+                      variant="destructive"
+                      >Edit</DropdownMenuItem>
+
+                      <DropdownMenuItem
+                      variant="default"
+                      onClick={()=>TodoApi.getTodoById(item.name) }>view</DropdownMenuItem>
 
                       <DropdownMenuItem
                         variant="destructive"
-                        onClick={() => TodoApi.deleteTodoById(item.id)}
+                        onClick={() => deleteTodo(item.id)}
                       >
                         Delete
                       </DropdownMenuItem>
