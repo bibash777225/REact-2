@@ -75,3 +75,23 @@ export const useDeleteTodoById = () => {
     },
   });
 };
+
+  export const useEditTodoBYId=()=>{
+ const queryClient=useQueryClient();
+
+  return useMutation({
+    mutationFn:TodoApi.editTodoByID,
+
+    onSuccess:(_, id)=>{
+      // refresh toto list after create
+      // Invalidate and refetch the todo list after deletion
+       queryClient.invalidateQueries({
+         queryKey: ["LEARN"],
+       });
+       queryClient.invalidateQueries({
+         queryKey: ["LEARN",id],
+       });
+    }
+
+  })
+ }

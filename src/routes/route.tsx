@@ -1,14 +1,18 @@
-import {BrowserRouter}"
+// import {createBrowserRouter, useRoutes} from"react-router-dom"
 
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    pages: <view/>,
+// import vieww from "@/pages/View";
+//  export const router = createBrowserRouter([
+//    {
+//      path: "/",
+//      element: <vieww/>,
     
-  },
-  {
-    path: "/about",
-    element: <div>About Page</div>,
-  },
-]);
+//    },
+//    {
+//      path: "/about",
+//      element: <div>About Page</div>,
+//    },
+//    return{
+
+//      useRoutes(router);
+//    }
+//  ]);

@@ -79,12 +79,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/Components/ui/dropdown-menu";
+// import { useNavigate } from "react-router-dom";
+
 import { Spinner } from "@/Components/ui/spinner";
-import { useDeleteTodoById, useGetAllTodoApi, useTodoGetById } from "../services/todo";
-import { TodoApi } from "../services/todo";
+import { useDeleteTodoById, useGetAllTodoApi, useTodoGetById } from "../hooks/todohooks";
+
+
+
 // interface TodoItemProps {
 //   todo: <ApiData>;
-// }
+// }            
 
 export default function About() {
   // single id ko
@@ -95,6 +99,8 @@ export default function About() {
 // delte ko 
 const{mutate:deleteTodo}=useDeleteTodoById();
 
+//  for navigation
+// const navigate=useNavigate();
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       {/* u chai spinner haleko  */}
@@ -163,10 +169,13 @@ const{mutate:deleteTodo}=useDeleteTodoById();
                       variant="destructive"
                       >Edit</DropdownMenuItem>
 
-                      <DropdownMenuItem
-                      variant="default"
-                      onClick={()=>TodoApi.getTodoById(item.name) }>view</DropdownMenuItem>
-
+                       <DropdownMenuItem
+                        
+                      >
+                        View
+                      </DropdownMenuItem>
+                      
+                   
                       <DropdownMenuItem
                         variant="destructive"
                         onClick={() => deleteTodo(item.id)}
